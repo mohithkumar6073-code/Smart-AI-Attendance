@@ -1,0 +1,22 @@
+async function markAttendance(studentId) {
+
+    const response = await fetch(
+        "http://127.0.0.1:5000/mark-attendance",
+        {
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                student_id: studentId,
+                status: "Present"
+            })
+        }
+    );
+
+    const result = await response.json();
+
+    alert(result.message);
+}

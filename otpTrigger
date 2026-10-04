@@ -1,0 +1,21 @@
+/**
+ * Call this function when the user enters their email address and clicks "Send Code".
+ * This triggers your cloud database to send a true 6-digit OTP code using Resend.
+ */
+export async function sendUserOTP(emailAddress) {
+  const { data, error } = await supabase.auth.signInWithOtp({
+    email: emailAddress,
+    options: {
+      // Directs the browser back to your secure website page after authentication
+      emailRedirectTo: window.location.origin, 
+    },
+  })
+
+  if (error) {
+    console.error("Error sending dynamic OTP code:", error.message)
+    return { success: false, error: error.message }
+  }
+
+  console.log("OTP successfully sent to mailbox:", data)
+  return { success: true, data }
+}

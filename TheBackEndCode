@@ -1,0 +1,87 @@
+const express = require('express');
+const path = require('path');
+const app = express();
+const PORT = 3000;
+
+// Middleware to process incoming JSON payload data
+app.use(express.json());
+
+// Serve static interface files from the public folder automatically
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Simulated Data Store (In-Memory Database placeholder)
+const localDatabase = [
+    { email: 'admin@example.com', password: 'Attendance123!', name: 'Administrator' }
+];
+
+// ----------------------------------------------------
+// 1. BACK-END ROUTE: USER LOGIN AUTHENTICATION
+// ----------------------------------------------------
+app.post('/api/auth/login', (req, res) => {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+        return res.status(400).json({ success: false, message: 'Please provide email and password.' });
+    }
+
+    // Lookup credentials in database
+    const userRecord = localDatabase.find(user => user.email.toLowerCase() === email.toLowerCase());
+
+    if (!userRecord || userRecord.password !== password) {
+        return res.status(401).json({ success: false, message: 'Invalid credentials. Check your email or password.' });
+    }
+
+    return res.json({ success: true, message: `Welcome back, ${userRecord.name}!`, redirectUrl: '/dashboard' });
+});
+
+// ----------------------------------------------------
+// 2. BACK-END ROUTE: NEW USER REGISTRATION (SIGN UP)
+// ----------------------------------------------------
+app.post('/api/auth/signup', (req, res) => {
+    const { name, email, password } = req.body;
+
+    if (!name || !email || !password) {
+        return res.status(400).json({ success: false, message: 'All registration parameters are required.' });
+    }
+
+    // Verify duplication
+    const accountExists = localDatabase.some(user => user.email.toLowerCase() === email.toLowerCase());
+    if (accountExists) {
+        return res.status(409).json({ success: false, message: 'An account with this email already exists.' });
+    }
+
+    // Append new record securely into storage
+    localDatabase.push({ name, email, password });
+    return res.status(201).json({ success: true, message: 'Account registered successfully! Redirecting to login...' });
+});
+
+// ----------------------------------------------------
+// 3. BACK-END ROUTE: PASSWORD RESET REQUEST
+// ----------------------------------------------------
+app.post('/api/auth/forgot-password', (req, res) => {
+    const { email } = req.body;
+
+    if (!email) {
+        return res.status(400).json({ success: false, message: 'Please enter a valid email address.' });
+    }
+
+    const accountExists = localDatabase.some(user => user.email.toLowerCase() === email.toLowerCase());
+    
+    // Security Best Practice: Don't explicitly reveal if email exists or not to prevent user enumeration attacks
+    return res.json({ 
+        success: true, 
+        message: 'If that email address is linked to an account, a password reset link has been dispatched.' 
+    });
+});
+
+// Fallback handling to catch empty dashboard view routing safely
+app.get('/dashboard', (req, res) => {
+    res.send('<h2 style="font-family:sans-serif; text-align:center; margin-top:50px; color:#2563eb;">Success! Secure Dashboard Interface Loaded.</h2>');
+});
+
+// Initialize server container instance
+app.listen(PORT, () => {
+    console.log(`Smart AI Attendance backend actively serving requests on: http://localhost:${PORT}`);
+    console.log(`- Login Endpoint: http://localhost:${PORT}/login.html`);
+    console.log(`- Registration Endpoint: http://localhost:${PORT}/signup.html`);
+});

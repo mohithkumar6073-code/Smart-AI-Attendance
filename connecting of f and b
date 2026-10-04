@@ -1,0 +1,24 @@
+async function scanFace(studentId) {
+
+    const formData = new FormData();
+
+    formData.append("student_id", studentId);
+
+    const response = await fetch(
+        "http://127.0.0.1:5000/face-scan",
+        {
+            method: "POST",
+            body: formData
+        }
+    );
+
+    const result = await response.json();
+
+    console.log(result);
+
+    if (result.success) {
+        alert("Face verified: " + result.student_name);
+    } else {
+        alert(result.message);
+    }
+}

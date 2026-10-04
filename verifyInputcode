@@ -1,0 +1,19 @@
+/**
+ * Call this function when the user types the 6 numbers into your verification UI boxes.
+ * It submits the token verification payload to authenticate the session profile.
+ */
+export async function verifyUserOTP(emailAddress, sixDigitToken) {
+  const { data, error } = await supabase.auth.verifyOtp({
+    email: emailAddress,
+    token: sixDigitToken, // Pass the text value string extracted from the UI form boxes
+    type: 'email',
+  })
+
+  if (error) {
+    console.error("Verification confirmation rejected:", error.message)
+    return { success: false, error: error.message }
+  }
+
+  console.log("Authentication secure. Active session payload:", data.session)
+  return { success: true, user: data.user }
+}

@@ -1,0 +1,276 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #08111f;
+  color: #eaf2ff;
+}
+
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 20px 60px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+header h1 {
+  margin-bottom: 8px;
+  font-size: 2.2rem;
+}
+
+header p {
+  margin: 0;
+  color: #a8c4ff;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: #12233d;
+  border: 1px solid #24406f;
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.18);
+}
+
+.card h2 {
+  margin-top: 0;
+  font-size: 1.2rem;
+}
+
+input, button {
+  width: 100%;
+  display: block;
+  margin: 10px 0;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #3c5d8c;
+  font-size: 1rem;
+}
+
+input {
+  background: #0d1a2c;
+  color: #fff;
+}
+
+button {
+  background: #2f7cf6;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+button:hover {
+  background: #2268d8;
+}
+
+.camera-box,
+.result-box,
+.record-box,
+.alerts-box {
+  margin-top: 10px;
+  padding: 12px;
+  border-radius: 8px;
+  background: #0d1a2c;
+  color: #dfeeff;
+  min-height: 48px;
+}
+
+.camera-preview {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  background: #0d1a2c;
+  color: #a8c4ff;
+  border-radius: 8px;
+}
+
+.camera-preview video,
+.camera-preview img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.camera-preview [hidden] {
+  display: none;
+}
+
+.camera-controls {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.camera-controls button {
+  min-width: 0;
+  margin: 0;
+  padding: 10px 6px;
+}
+
+.camera-controls button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.attendance-options {
+  display: flex;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.status-btn {
+  flex: 1;
+  background: #1a355d;
+}
+
+.status-btn.active {
+  background: #24a148;
+}
+
+.metric {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #2a4473;
+}
+
+.input-row {
+  display: flex;
+  gap: 8px;
+}
+
+.input-row input {
+  flex: 1;
+}
+
+.account-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  margin-top: 16px;
+  color: #a8c4ff;
+}
+
+.account-bar form {
+  margin: 0;
+}
+
+.account-bar button {
+  width: auto;
+  margin: 0;
+}
+
+.login-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.login-card {
+  width: min(100%, 420px);
+  padding: 32px;
+  border: 1px solid #24406f;
+  border-radius: 16px;
+  background: #12233d;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+  text-align: center;
+}
+
+.brand-mark {
+  display: grid;
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 16px;
+  place-items: center;
+  border-radius: 14px;
+  background: #2f7cf6;
+  color: white;
+  font-weight: 700;
+}
+
+.eyebrow {
+  color: #a8c4ff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.login-card h1 {
+  margin: 8px 0;
+  font-size: 1.8rem;
+}
+
+.login-description {
+  margin: 0 0 24px;
+  color: #b5c6df;
+}
+
+.login-card form {
+  text-align: left;
+}
+
+.login-card label {
+  display: block;
+  margin: 16px 0 6px;
+  color: #dfeeff;
+}
+
+.login-card input {
+  margin: 0;
+}
+
+.form-error {
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: #4a2029;
+  color: #ffc3c3;
+}
+
+.demo-hint {
+  margin: 20px 0 0;
+  color: #a8c4ff;
+  font-size: 0.9rem;
+}
+
+.secondary-button {
+  background: #1a355d;
+}
+
+.secondary-button:hover {
+  background: #244776;
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .account-bar {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .login-card {
+    padding: 24px;
+  }
+}

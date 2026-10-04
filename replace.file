@@ -1,0 +1,11 @@
+src/
+  main.jsx
+  App.jsx
+  auth/
+    AuthContext.jsx
+    ProtectedRoute.jsx
+  pages/
+    Login.jsx
+    Dashboard.jsx
+    Attendance.jsx
+  styles.css

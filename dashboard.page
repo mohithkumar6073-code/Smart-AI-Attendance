@@ -1,0 +1,32 @@
+import { Link } from "react-router-dom";
+import { useAuth } from "../auth/AuthContext";
+
+export default function Dashboard() {
+  const { user, logout } = useAuth();
+
+  return (
+    <main className="app-page">
+      <header className="topbar">
+        <Link className="brand-link" to="/dashboard">
+          Smart AI Attendance
+        </Link>
+        <div className="topbar-actions">
+          <span className="user-label">{user}</span>
+          <button className="secondary-button" onClick={logout} type="button">
+            Log out
+          </button>
+        </div>
+      </header>
+
+      <section className="content">
+        <p className="eyebrow">OVERVIEW</p>
+        <h1>Dashboard</h1>
+        <p>You are signed in. Your attendance dashboard goes here.</p>
+
+        <Link className="primary-link" to="/attendance">
+          Open AI Attendance
+        </Link>
+      </section>
+    </main>
+  );
+}

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Smart Attendance</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h1>AI-Powered Smart Attendance System</h1>
+    <p class="subtitle">Face Recognition • Analytics • Alerts</p>
+
+    <div class="container">
+        <div class="column">
+            <h2>Student Enrollment</h2>
+
+            <input type="text" placeholder="Student ID">
+            <input type="text" placeholder="Student Name">
+            <input type="text" placeholder="Class">
+            <input type="file">
+
+            <button>Register Student</button>
+        </div>
+        <div class="column">
+            <h2>Face Recognition</h2>
+
+            <div class="camera">
+                CAMERA
+            </div>
+
+            <button>Start Camera</button>
+
+            <p>Face Detection: Ready</p>
+            <p>Recognition: Waiting</p>
+        </div>
+        <div class="column">
+            <h2>Attendance</h2>
+
+            <div class="box">Present</div>
+            <div class="box">Absent</div>
+            <div class="box">Unknown</div>
+
+            <button>Mark Attendance</button>
+        </div>
+        <div class="column">
+            <h2>Attendance Records</h2>
+
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                </tr>
+
+                <tr>
+                    <td>---</td>
+                    <td>---</td>
+                    <td>---</td>
+                    <td>---</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Column 5 -->
+        <div class="column">
+            <h2>Analytics</h2>
+
+            <div class="stat">
+                Daily Attendance
+                <b>0%</b>
+            </div>
+
+            <div class="stat">
+                Weekly Attendance
+                <b>0%</b>
+            </div>
+
+            <div class="stat">
+                Monthly Attendance
+                <b>0%</b>
+            </div>
+
+            <div class="stat">
+                Low Attendance
+                <b>0</b>
+            </div>
+        </div>
+        <div class="column">
+            <h2>Alerts</h2>
+
+            <div class="alert">
+                Low Attendance Alert
+            </div>
+
+            <div class="alert">
+                Absent Alert
+            </div>
+
+            <div class="alert">
+                Unknown Face Alert
+            </div>
+
+            <button>Send Alert</button>
+        </div>
+
+    </div>
+
+</body>
+</html>
